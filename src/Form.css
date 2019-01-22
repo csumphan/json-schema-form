@@ -1,0 +1,10 @@
+.form {
+  margin: 10px 20px;
+}
+
+.form-container {
+  background-color: white;
+  border: 1px solid #EDEDED;
+  width: 70%;
+  margin: 20px 10px;
+}
