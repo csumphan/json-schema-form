@@ -4,7 +4,8 @@
 
 .form-container {
   background-color: white;
-  border: 1px solid #EDEDED;
+  border: 1px solid #DDDDDD;
+  border-radius: 2px;
   width: 70%;
   margin: 20px 10px;
 }

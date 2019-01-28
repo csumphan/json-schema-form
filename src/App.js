@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import Form from './Form'
+import Form from './components/Form'
+import TableView from './containers/TableView'
 
 import schema from './schema.json'
 
@@ -12,10 +13,12 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <div className='form-container'>
+        {/* <div className='form-container'>
           <Form schema={schema} onChange={log('changed')} onSubmit={log('submitted')} onError={log('error')} />
-        </div>
+        </div> */}
+        <TableView />
       </div>
+
     );
   }
 }

@@ -33,6 +33,13 @@ const uiSchema = {
   }
 }
 
+// 1. check schema for TIPPER specific types
+// 2. update all invalid types to valid ones through api call
+
+const updateSchemaToTipper = (schema) => {
+
+}
+
 const HOST = 'http://128.195.53.164:1086'
 
 class JSONForm extends Component {
@@ -44,25 +51,29 @@ class JSONForm extends Component {
     }
   }
   componentDidMount() {
-    axios({
-      method: 'get',
-      url: `${HOST}/spacetype`,
-      responseType: 'application/json'
-    })
-    .then((res) => {
-      const newSchema = { ...this.props.schema }
-
-      for (let key in newSchema.properties) {
-        if (newSchema.properties[key].type === 'space_types') {
-          newSchema.properties[key] = {
-            ...newSchema.properties[key],
-            type: 'string',
-            enum: res.data.map(val => val.id)
-          }
-        }
-      }
-      this.setState({schema: newSchema})
-    })
+    // axios({
+    //   method: 'get',
+    //   url: `${HOST}/spacetype`,
+    //   responseType: 'application/json'
+    // })
+    // .then((res) => {
+    //   const newSchema = { ...this.props.schema }
+    //
+    //   for (let key in newSchema.properties) {
+    //     if (newSchema.properties[key].type === 'space_types') {
+    //       newSchema.properties[key] = {
+    //         ...newSchema.properties[key],
+    //         type: 'string',
+    //         enum: res.data.map(val => val.id)
+    //       }
+    //     }
+    //   }
+    //   this.setState({schema: newSchema})
+    // })
+    // .catch((err) => {
+    //   this.setState( {schema: { ...this.props.schema } })
+    // })
+    this.setState( {schema: { ...this.props.schema } })
   }
   render() {
     const { onChange, onSubmit, onError } = this.props
@@ -71,7 +82,7 @@ class JSONForm extends Component {
         {
           !this.state.schema
           ?
-          <p>sdf</p>
+          null
           :
           <Form
             className='form'

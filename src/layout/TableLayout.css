@@ -1,0 +1,16 @@
+.table-layout-main {
+  margin: 10px;
+}
+.table-layout-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 0 20px 0;
+  margin-bottom: 10px;
+  border-bottom: 1px solid #DEE1E6;
+}
+
+.table-layout-title {
+  font-size: 28px;
+  font-weight: 500;
+}

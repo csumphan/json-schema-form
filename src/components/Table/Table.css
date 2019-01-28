@@ -1,0 +1,13 @@
+.table-main {
+  background-color: #F8F8F8;
+  border-radius: 5px;
+}
+
+.table-cell {
+  word-wrap: break-word;
+}
+
+.bootstrap-table-header {
+  background-color: #E8E7FD;
+  font-size: 14px;
+}
