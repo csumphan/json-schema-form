@@ -1,46 +1,36 @@
 {
-  "title": "A Registration Form (Example)",
-  "description": "A simple form example.",
+  "title": "Spacetype Form",
+  "description": "Add or edit spacetype",
   "type": "object",
   "required": [
-    "firstName",
-    "lastName"
+    "ID",
+    "label",
+    "description"
   ],
   "properties": {
-    "firstName": {
+    "ID": {
       "type": "string",
-      "title": "First name",
-      "default": "Chuck"
+      "title": "ID "
     },
-    "lastName": {
+    "label": {
       "type": "string",
-      "title": "Last name"
+      "title": "Label"
     },
-    "age": {
-      "type": "integer",
-      "title": "Age"
+    "subTypeOf": {
+      "type": "space_types",
+      "title": "Subtype of"
     },
-    "bio": {
-      "type": "string",
-      "title": "Bio"
-    },
-    "password": {
-      "type": "string",
-      "title": "Password",
-      "minLength": 3
-    },
-    "telephone": {
-      "type": "string",
-      "title": "Telephone",
-      "minLength": 10
+    "propertiesInfo": {
+      "type": "array",
+      "title": "Properties",
+      "items": {
+        "type": "string",
+        "default": ""
+      }
     },
     "test_type": {
       "type": "string",
       "enum": ["1", "2", "3"]
-    },
-    "space_types": {
-      "type": "space_types",
-      "title": "Type of Space"
     }
   }
 }

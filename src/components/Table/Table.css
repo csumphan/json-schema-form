@@ -3,6 +3,13 @@
   border-radius: 5px;
 }
 
+/* .table {
+  overflow: auto;
+  table-layout: auto;
+  display: block;
+  min-width: 100%;
+} */
+
 .table-cell {
   word-wrap: break-word;
 }

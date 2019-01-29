@@ -14,9 +14,7 @@ class TableView extends Component {
             <Button><i class='fas fa-plus'></i> Add Space Type</Button>
           </TableLayout.Header>
           <TableLayout.Body>
-            <div className='table-responsive'>
               <Table />
-            </div>
           </TableLayout.Body>
         </TableLayout>
       </div>

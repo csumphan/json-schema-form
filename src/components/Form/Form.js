@@ -4,34 +4,8 @@ import axios from 'axios'
 
 import Form from "react-jsonschema-form";
 
+import uiSchema from './uiSchema.json'
 import './Form.css'
-
-const uiSchema = {
-  "firstName": {
-    "ui:autofocus": true,
-    "ui:emptyValue": ""
-  },
-  "age": {
-    "ui:widget": "updown",
-    "ui:title": "Age of person",
-    "ui:description": "(earthian year)"
-  },
-  "bio": {
-    "ui:widget": "textarea"
-  },
-  "password": {
-    "ui:widget": "password",
-    "ui:help": "Hint: Make it strong!"
-  },
-  "date": {
-    "ui:widget": "alt-datetime"
-  },
-  "telephone": {
-    "ui:options": {
-      "inputType": "tel"
-    }
-  }
-}
 
 // 1. check schema for TIPPER specific types
 // 2. update all invalid types to valid ones through api call
