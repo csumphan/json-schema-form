@@ -10,8 +10,8 @@ class TableView extends Component {
       <div>
         <TableLayout>
           <TableLayout.Header>
-            <TableLayout.Title>Space Types</TableLayout.Title>
-            <Button><i class='fas fa-plus'></i> Add Space Type</Button>
+            <TableLayout.Title>{this.props.schema.label}</TableLayout.Title>
+            <Button><i class='fas fa-plus'></i>{` Add ${this.props.schema.label}`}</Button>
           </TableLayout.Header>
           <TableLayout.Body>
               <Table schema={this.props.schema}/>

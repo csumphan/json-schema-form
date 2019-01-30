@@ -1,15 +1,19 @@
 import React, { Component } from 'react'
 import Sidebar from 'react-sidebar'
-
+import { BrowserRouter as Router, Route, Link } from "react-router-dom"
 import './Sidebar.css'
 
 const mql = window.matchMedia(`(min-width: 800px)`);
 
 const SidebarContent = ({ pages }) => (
   <div>
-    {Object.keys(pages).map((key) => <p className='sidebar-link'>
-      {pages[key].label}
-    </p>)}
+    {Object.keys(pages).map((key) => (
+      <Link to={`/${key}`}>
+        <p className='sidebar-link'>
+          {pages[key].label}
+        </p>
+      </Link>
+    ))}
   </div>
 )
 
