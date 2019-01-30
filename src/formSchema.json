@@ -1,0 +1,115 @@
+{
+  "spaceType": {
+    "label": "Space Types",
+    "form": {
+      "title": "Spacetype Form",
+      "description": "Add or edit spacetype",
+      "type": "object",
+      "required": [
+        "ID",
+        "label",
+        "description"
+      ],
+      "properties": {
+        "ID": {
+          "type": "string",
+          "title": "ID "
+        },
+        "label": {
+          "type": "string",
+          "title": "Label"
+        },
+        "subTypeOf": {
+          "type": "space_types",
+          "title": "Subtype of"
+        },
+        "properties": {
+          "type": "array",
+          "title": "Properties",
+          "items": {
+            "type": "string",
+            "default": ""
+          }
+        }
+      }
+    }
+  },
+  "space": {
+    "label": "Space",
+    "form": {
+      "title": "Spaces Form",
+      "description": "Add or edit spaces",
+      "type": "object",
+      "required": [
+        "ID",
+        "label",
+        "description"
+      ],
+      "properties": {
+        "ID": {
+          "type": "string",
+          "title": "ID "
+        },
+        "label": {
+          "type": "string",
+          "title": "Label"
+        },
+        "type": {
+          "type": "space_types",
+          "title": "Type"
+        },
+        "propertiesInfo": {
+          "type": "array",
+          "title": "Properties",
+          "items": {
+            "type": "string",
+            "default": ""
+          }
+        },
+        "test_type": {
+          "type": "string",
+          "enum": ["1", "2", "3"]
+        }
+      }
+    }
+  },
+  "platformType": {
+    "label": "Platform Types",
+    "form": {
+      "title": "Platform Type Form",
+      "description": "Add or edit platform types",
+      "type": "object",
+      "required": [
+        "ID",
+        "label",
+        "description"
+      ],
+      "properties": {
+        "ID": {
+          "type": "string",
+          "title": "ID "
+        },
+        "label": {
+          "type": "string",
+          "title": "Label"
+        },
+        "subTypeOf": {
+          "type": "space_types",
+          "title": "Subtype of"
+        },
+        "propertiesInfo": {
+          "type": "array",
+          "title": "Properties",
+          "items": {
+            "type": "string",
+            "default": ""
+          }
+        },
+        "test_type": {
+          "type": "string",
+          "enum": ["1", "2", "3"]
+        }
+      }
+    }
+  }
+}

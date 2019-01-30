@@ -14,7 +14,7 @@ class TableView extends Component {
             <Button><i class='fas fa-plus'></i> Add Space Type</Button>
           </TableLayout.Header>
           <TableLayout.Body>
-              <Table />
+              <Table schema={this.props.schema}/>
           </TableLayout.Body>
         </TableLayout>
       </div>

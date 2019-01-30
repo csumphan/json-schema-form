@@ -1,0 +1,16 @@
+.sidebar {
+  background-color: #F8F8F8;
+  padding: 10px 30px;
+}
+
+.main {
+  margin: 10px;
+  display: flex;
+  justify-content: center;
+}
+
+.sidebar-link {
+  font-size: 20px;
+  font-weight: 700;
+  color: #999999;
+}
