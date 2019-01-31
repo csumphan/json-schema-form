@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import BootstrapTable from 'react-bootstrap-table-next'
 import Button from '../Button'
+import EmptyState from '../EmptyState'
 import { get } from "utils/api"
 
 import 'react-bootstrap-table-next/dist/react-bootstrap-table2.min.css';
@@ -76,6 +77,7 @@ class Table extends Component {
         rowClasses='table-cell'
         headerClasses='bootstrap-table-header'
         data={this.state.rows}
+        noDataIndication={<EmptyState title='Empty Table' description={`Create a ${this.props.schema.label} and it will show up here.`}/>}
     />
     )
   }
