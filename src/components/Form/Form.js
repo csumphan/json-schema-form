@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import { render } from "react-dom";
-import axios from 'axios'
 
 import Form from "react-jsonschema-form";
 
@@ -13,8 +12,6 @@ import './Form.css'
 const updateSchemaToTipper = (schema) => {
 
 }
-
-const HOST = 'http://128.195.53.164:1086'
 
 class JSONForm extends Component {
   constructor(props) {

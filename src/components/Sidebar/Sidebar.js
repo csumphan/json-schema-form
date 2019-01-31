@@ -8,7 +8,7 @@ const mql = window.matchMedia(`(min-width: 800px)`);
 const SidebarContent = ({ pages }) => (
   <div>
     {Object.keys(pages).map((key) => (
-      <Link to={`/${key}`}>
+      <Link to={`/${key.toLowerCase()}`}>
         <p className='sidebar-link'>
           {pages[key].label}
         </p>

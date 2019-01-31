@@ -1,6 +1,7 @@
 {
   "spaceType": {
     "label": "Space Types",
+    "path": "/spacetype",
     "form": {
       "title": "Spacetype Form",
       "description": "Add or edit spacetype",
@@ -36,6 +37,7 @@
   },
   "space": {
     "label": "Space",
+    "path": "/space",
     "form": {
       "title": "Spaces Form",
       "description": "Add or edit spaces",
@@ -58,23 +60,20 @@
           "type": "space_types",
           "title": "Type"
         },
-        "propertiesInfo": {
+        "properties": {
           "type": "array",
           "title": "Properties",
           "items": {
             "type": "string",
             "default": ""
           }
-        },
-        "test_type": {
-          "type": "string",
-          "enum": ["1", "2", "3"]
         }
       }
     }
   },
   "platformType": {
     "label": "Platform Types",
+    "path": "/platformtype",
     "form": {
       "title": "Platform Type Form",
       "description": "Add or edit platform types",
@@ -89,15 +88,11 @@
           "type": "string",
           "title": "ID "
         },
-        "label": {
+        "name": {
           "type": "string",
-          "title": "Label"
+          "title": "Name"
         },
-        "subTypeOf": {
-          "type": "space_types",
-          "title": "Subtype of"
-        },
-        "propertiesInfo": {
+        "properties": {
           "type": "array",
           "title": "Properties",
           "items": {

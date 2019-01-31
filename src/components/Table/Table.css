@@ -1,7 +1,11 @@
 .table-main {
   background-color: #F8F8F8;
   border-radius: 5px;
+  /* table-layout: auto !important; */
 }
+/* .table-wrapper {
+  overflow-x: scroll;
+} */
 
 /* .table {
   overflow: auto;
