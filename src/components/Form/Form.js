@@ -1,17 +1,15 @@
 import React, { Component } from "react";
 import { render } from "react-dom";
+import * as deepmerge from 'deepmerge'
 
 import Form from "react-jsonschema-form";
 
-import uiSchema from './uiSchema.json'
+import ui from './uiSchema.json'
 import './Form.css'
 
 // 1. check schema for TIPPER specific types
 // 2. update all invalid types to valid ones through api call
 
-const updateSchemaToTipper = (schema) => {
-
-}
 
 class JSONForm extends Component {
   constructor(props) {
@@ -47,6 +45,11 @@ class JSONForm extends Component {
     this.setState( {schema: { ...this.props.schema } })
   }
   render() {
+    let uiSchema = ui
+    if (ui && this.props.uiSchema) {
+     uiSchema = deepmerge(ui, this.props.uiSchema)
+    }
+
     const { onChange, onSubmit, onError } = this.props
     return (
       <div>

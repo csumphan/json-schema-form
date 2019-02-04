@@ -1,11 +1,10 @@
 .form {
-  margin: 10px 20px;
+  margin: 20px 40px;
 }
 
 .form-container {
-  background-color: white;
-  border: 1px solid #DDDDDD;
+  /* background-color: white;
+  border: 1px solid #DDDDDD; */
   border-radius: 2px;
-  max-width: 685px;
   margin: 20px 10px;
 }

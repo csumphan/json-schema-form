@@ -10,31 +10,26 @@ import logo from './logo.svg';
 import './App.css';
 
 const log = (type) => console.log.bind(console, type);
-
-const routes = Object.keys(schema).map((key) => {
-  return {
-    path: `/${key.toLowerCase()}`,
-    main: () => <TableView schema={schema[key]} />
-  }
+const routes = []
+Object.keys(schema).forEach((key) => {
+  routes.push(
+    {
+      path: `/${key.toLowerCase()}`,
+      main: (props) => <TableView schema={schema[key]} {...props}/>,
+      exact: true
+    },
+    {
+      path: `/${key.toLowerCase()}/new`,
+      main: (props) => <div className=' col-sm-7 form-container'>
+      <Form
+        schema={schema[key].form}
+        uiSchema={schema[key].ui}
+        {...props}/>
+      </div>,
+      exact: true
+    }
+  )
 })
-
-// const routes = [
-//   {
-//     path: "/spacetype",
-//     exact: true,
-//     main: () => <h2>Home</h2>
-//   },
-//   {
-//     path: "/bubblegum",
-//     sidebar: () => <div>bubblegum!</div>,
-//     main: () => <h2>Bubblegum</h2>
-//   },
-//   {
-//     path: "/shoelaces",
-//     sidebar: () => <div>shoelaces!</div>,
-//     main: () => <h2>Shoelaces</h2>
-//   }
-// ]
 
 class App extends Component {
   render() {

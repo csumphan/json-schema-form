@@ -7,14 +7,14 @@
       "description": "Add or edit spacetype",
       "type": "object",
       "required": [
-        "ID",
+        "id",
         "label",
         "description"
       ],
       "properties": {
-        "ID": {
+        "id": {
           "type": "string",
-          "title": "ID "
+          "title": "ID"
         },
         "label": {
           "type": "string",
@@ -43,12 +43,12 @@
       "description": "Add or edit spaces",
       "type": "object",
       "required": [
-        "ID",
+        "id",
         "label",
         "description"
       ],
       "properties": {
-        "ID": {
+        "id": {
           "type": "string",
           "title": "ID "
         },
@@ -60,6 +60,10 @@
           "type": "space_types",
           "title": "Type"
         },
+        "description": {
+          "type": "string",
+          "title": "Description"
+        },
         "properties": {
           "type": "array",
           "title": "Properties",
@@ -67,6 +71,10 @@
             "type": "string",
             "default": ""
           }
+        },
+        "geoobject": {
+          "type": "string",
+          "title": "Geoobject"
         }
       }
     }
@@ -79,12 +87,12 @@
       "description": "Add or edit platform types",
       "type": "object",
       "required": [
-        "ID",
+        "id",
         "label",
         "description"
       ],
       "properties": {
-        "ID": {
+        "id": {
           "type": "string",
           "title": "ID "
         },
@@ -99,10 +107,199 @@
             "type": "string",
             "default": ""
           }
-        },
-        "test_type": {
+        }
+      }
+    }
+  },
+  "platform": {
+    "label": "Platform",
+    "path": "/platform",
+    "form": {
+      "title": "Platform Form",
+      "description": "Add or edit platform",
+      "type": "object",
+      "required": [
+        "name",
+        "label",
+        "description"
+      ],
+      "properties": {
+        "id": {
           "type": "string",
-          "enum": ["1", "2", "3"]
+          "title": "ID "
+        },
+        "name": {
+          "type": "string",
+          "title": "Name"
+        },
+        "properties": {
+          "type": "array",
+          "title": "Properties",
+          "items": {
+            "type": "string",
+            "default": ""
+          }
+        }
+      }
+    }
+  },
+  "sensorType": {
+    "label": "Sensor Type",
+    "path": "/sensortype",
+    "form": {
+      "title": "Sensor Type Form",
+      "description": "Add or edit sensor type",
+      "type": "object",
+      "required": [
+        "id",
+        "label",
+        "description"
+      ],
+      "properties": {
+        "id": {
+          "type": "string",
+          "title": "ID "
+        },
+        "label": {
+          "type": "string",
+          "title": "Label"
+        },
+        "description": {
+          "type": "string",
+          "title": "Description"
+        },
+        "subTypeOf": {
+          "type": "string",
+          "title": "Subtype Of"
+        },
+        "coverage_function": {
+          "type": "string",
+          "title": "Coverage Function"
+        },
+        "observes": {
+          "type": "array",
+          "title": "Observes",
+          "items": {
+            "type": "string",
+            "default": ""
+          }
+        }
+      }
+    }
+  },
+  "sensor": {
+    "label": "Sensor",
+    "path": "/sensor",
+    "form": {
+      "title": "Sensor Form",
+      "description": "Add or edit sensor",
+      "type": "object",
+      "required": [
+        "id",
+        "name",
+        "description"
+      ],
+      "properties": {
+        "id": {
+          "type": "string",
+          "title": "ID "
+        },
+        "name": {
+          "type": "string",
+          "title": "Name"
+        },
+        "description": {
+          "type": "string",
+          "title": "Description"
+        },
+        "mobility": {
+          "type": "string",
+          "title": "Mobility"
+        }
+      }
+    }
+  },
+  "user": {
+    "label": "User",
+    "path": "/user",
+    "form": {
+      "title": "User Form",
+      "description": "Add or edit user",
+      "type": "object",
+      "required": [
+        "id",
+        "name",
+        "email"
+      ],
+      "properties": {
+        "id": {
+          "type": "string",
+          "title": "ID "
+        },
+        "name": {
+          "type": "string",
+          "title": "Name"
+        },
+        "email": {
+          "type": "string",
+          "title": "Email"
+        },
+        "description": {
+          "type": "string",
+          "title": "Description"
+        },
+        "owns": {
+          "type": "string",
+          "title": "Owns"
+        }
+      }
+    },
+    "ui": {
+      "id": {
+        "ui:placeholder": "DBH_John"
+      },
+      "name": {
+        "ui:placeholder": "John Doe"
+      },
+      "email": {
+        "ui:placeholder": "johnd@uci.edu"
+      },
+      "description": {
+        "ui:placeholder": "Fourth year CS undergrad"
+      }
+    }
+  },
+  "observation_type": {
+    "label": "Observation Type",
+    "path": "/observationtype",
+    "form": {
+      "title": "Observation Type Form",
+      "description": "Add or edit Observation Type",
+      "type": "object",
+      "required": [
+        "id",
+        "label"
+      ],
+      "properties": {
+        "ID": {
+          "type": "string",
+          "title": "ID "
+        },
+        "label": {
+          "type": "string",
+          "title": "Label"
+        },
+        "description": {
+          "type": "string",
+          "title": "Description"
+        },
+        "subTypeOf": {
+          "type": "string",
+          "title": "Subtype Of"
+        },
+        "payload_schema": {
+          "type": "object",
+          "title": "Payload Schema"
         }
       }
     }

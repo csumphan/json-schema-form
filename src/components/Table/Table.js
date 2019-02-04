@@ -77,7 +77,7 @@ class Table extends Component {
         rowClasses='table-cell'
         headerClasses='bootstrap-table-header'
         data={this.state.rows}
-        noDataIndication={<EmptyState title='Empty Table' description={`Create a ${this.props.schema.label} and it will show up here.`}/>}
+        noDataIndication={<EmptyState title='Table is Empty' description={`Create a ${this.props.schema.label} and it will show up here.`}/>}
     />
     )
   }
