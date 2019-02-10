@@ -9,23 +9,30 @@ export const get = async (path) => {
     url: `${HOST}${path}`,
     responseType: 'application/json'
   })
-  // .then((res) => {
-  //   const newSchema = { ...this.props.schema }
-  //
-  //   for (let key in newSchema.properties) {
-  //     if (newSchema.properties[key].type === 'space_types') {
-  //       newSchema.properties[key] = {
-  //         ...newSchema.properties[key],
-  //         type: 'string',
-  //         enum: res.data.map(val => val.id)
-  //       }
-  //     }
-  //   }
-  //   this.setState({schema: newSchema})
-  // })
-  // .catch((err) => {
-  //   this.setState( {schema: { ...this.props.schema } })
-  // })
-
+  
   return result
+}
+
+export const getTypes = async (schema, formKey) => {
+  const supportedTypes = Object.keys(schema)
+
+  const result = await axios({
+    method: 'get',
+    url: `${HOST}${schema[formKey].path}`,
+    responseType: 'application/json'
+  })
+
+  const newSchema = { ...schema[formKey].form }
+
+  for (let key in newSchema.properties) {
+    if (supportedTypes.includes(newSchema.properties[key].type)) {
+      newSchema.properties[key] = {
+        ...newSchema.properties[key],
+        type: 'string',
+        enum: result.data.map(val => val.id)
+      }
+    }
+  }
+
+  return newSchema
 }

@@ -1,8 +1,10 @@
-import React, { Component } from "react";
-import { render } from "react-dom";
+import React, { Component } from "react"
+import { render } from "react-dom"
 import * as deepmerge from 'deepmerge'
+import axios from 'axios'
+import Form from "react-jsonschema-form"
 
-import Form from "react-jsonschema-form";
+import { getTypes } from '../../utils/api'
 
 import ui from './uiSchema.json'
 import './Form.css'
@@ -20,29 +22,12 @@ class JSONForm extends Component {
     }
   }
   componentDidMount() {
-    // axios({
-    //   method: 'get',
-    //   url: `${HOST}/spacetype`,
-    //   responseType: 'application/json'
-    // })
-    // .then((res) => {
-    //   const newSchema = { ...this.props.schema }
-    //
-    //   for (let key in newSchema.properties) {
-    //     if (newSchema.properties[key].type === 'space_types') {
-    //       newSchema.properties[key] = {
-    //         ...newSchema.properties[key],
-    //         type: 'string',
-    //         enum: res.data.map(val => val.id)
-    //       }
-    //     }
-    //   }
-    //   this.setState({schema: newSchema})
-    // })
-    // .catch((err) => {
-    //   this.setState( {schema: { ...this.props.schema } })
-    // })
-    this.setState( {schema: { ...this.props.schema } })
+    //used to fill (custom TIPPERS types for form select field)
+    getTypes(this.props.schema, this.props.formKey)
+    .then(newSchema => {
+      this.setState({ schema: newSchema })
+    })
+    .catch(err => console.log(err))
   }
   render() {
     let uiSchema = ui

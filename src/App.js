@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Route, Link } from "react-router-dom"
 import Form from './components/Form'
 import TableView from './containers/TableView'
 import Sidebar from './components/Sidebar'
+import Property from './components/Property'
 
 import schema from './formSchema.json'
 
@@ -22,8 +23,11 @@ Object.keys(schema).forEach((key) => {
       path: `/${key.toLowerCase()}/new`,
       main: (props) => <div className=' col-sm-7 form-container'>
       <Form
-        schema={schema[key].form}
-        uiSchema={schema[key].ui}
+        formKey={key}
+        schema={schema}
+        uiSchema={{...schema[key].ui }}
+        onSubmit={ log('submit')}
+        // fields={{ propertyForm: Property }}
         {...props}/>
       </div>,
       exact: true
