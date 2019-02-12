@@ -25,12 +25,30 @@ Object.keys(schema).forEach((key) => {
       <Form
         formKey={key}
         schema={schema}
+        definitions={schema.definitions}
         uiSchema={{...schema[key].ui }}
         onSubmit={ log('submit')}
-        // fields={{ propertyForm: Property }}
+        onChange={log('change')}
+        liveValidate
         {...props}/>
       </div>,
       exact: true
+    },
+    {
+      path: `/${key.toLowerCase()}/edit/:id`,
+      main: (props) => <div className=' col-sm-7 form-container'>
+      <Form
+        formKey={key}
+        schema={schema}
+        definitions={schema.definitions}
+        uiSchema={{...schema[key].ui }}
+        onSubmit={ log('submit')}
+        onChange={log('change')}
+        formData={props.location.formData}
+        liveValidate
+        {...props}/>
+      </div>,
+      exact: false
     }
   )
 })
@@ -42,9 +60,6 @@ class App extends Component {
         <Router>
           <div className='app-wrapper'>
             <Sidebar schema={schema}>
-                {/* <div className='form-container'>
-                  <Form schema={schema} onChange={log('changed')} onSubmit={log('submitted')} onError={log('error')} />
-                </div> */}
                 {routes.map((route, index) => (
                   <Route
                     key={index}

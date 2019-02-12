@@ -3,8 +3,9 @@ import { render } from "react-dom"
 import * as deepmerge from 'deepmerge'
 import axios from 'axios'
 import Form from "react-jsonschema-form"
+// import { withRouter } from 'react-router-dom'
 
-import { getTypes } from '../../utils/api'
+import { getTypes, getDefinitionTypes, post } from '../../utils/api'
 
 import ui from './uiSchema.json'
 import './Form.css'
@@ -18,23 +19,42 @@ class JSONForm extends Component {
     super(props)
 
     this.state = {
-      schema: null
+      schema: null,
+      formData: this.props.formData
     }
   }
   componentDidMount() {
     //used to fill (custom TIPPERS types for form select field)
-    getTypes(this.props.schema, this.props.formKey)
-    .then(newSchema => {
-      this.setState({ schema: newSchema })
+    Promise.all([getTypes(this.props.schema, this.props.formKey), getDefinitionTypes(this.props.definitions, this.props.schema, this.props.formKey)])
+    .then(([newSchema, newDefinitions]) => {
+      this.setState({ schema: { definitions: newDefinitions, ...newSchema }})
     })
-    .catch(err => console.log(err))
+    .catch(err => {
+      this.setState({ schema: { ...this.props.schema[this.props.formKey].form } })
+    })
   }
+
+  onFormChange = (formData) => {
+    this.setState({ formData: formData })
+  }
+
+  onSubmitForm = () => {
+    const body = {
+      users: [this.state.formData]
+    }
+
+    post(this.props.schema[this.props.formKey].path, [this.state.formData])
+    .then(() => {
+      this.props.history.push(`/${this.props.formKey}`)
+    })
+  }
+
   render() {
     let uiSchema = ui
     if (ui && this.props.uiSchema) {
      uiSchema = deepmerge(ui, this.props.uiSchema)
     }
-
+    console.log('form', this.state.formData)
     const { onChange, onSubmit, onError } = this.props
     return (
       <div>
@@ -47,9 +67,10 @@ class JSONForm extends Component {
             className='form'
             schema={this.state.schema}
             uiSchema={uiSchema}
-            onChange={onChange}
-            onSubmit={onSubmit}
+            onChange={({ formData }) => this.onFormChange(formData)}
+            onSubmit={this.onSubmitForm}
             onError={onError}
+            formData={this.state.formData}
           />
         }
       </div>

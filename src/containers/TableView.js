@@ -19,7 +19,7 @@ class TableView extends Component {
             </Link>
           </TableLayout.Header>
           <TableLayout.Body>
-              <Table schema={this.props.schema}/>
+              <Table schema={this.props.schema} {...this.props}/>
           </TableLayout.Body>
         </TableLayout>
       </div>

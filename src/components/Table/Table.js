@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import BootstrapTable from 'react-bootstrap-table-next'
+import { Link } from "react-router-dom"
 import Button from '../Button'
 import EmptyState from '../EmptyState'
 import { get } from "utils/api"
@@ -24,6 +25,10 @@ class Table extends Component {
     })
   }
 
+  editRowHandler() {
+
+  }
+
   render() {
     const schemaProperties = this.props.schema.form.properties
 
@@ -38,35 +43,27 @@ class Table extends Component {
     columns = [
       {
          dataField: 'button',
-         formatter: () => (<Button className='btn-sm' style={{ display: 'block', margin: 'auto' }}>Edit</Button>),
+         formatter: (_, row, rowIndex) => {
+           console.log('row', row)
+          return (
+            <Link to={{
+              pathname: `${this.props.match.path}/edit/${rowIndex}`,
+              formData: row
+            }}>
+              <Button
+              className='btn-sm'
+              style={{ display: 'block', margin: 'auto' }}>
+              Edit
+              </Button>
+            </Link>
+          )
+         },
          headerStyle: (colum, colIndex) => {
              return { width: '80px', textAlign: 'center' };
          }
        },
        ...columns
     ]
-    // const columns = [
-    //   {
-    //     dataField: 'button',
-    //     formatter: () => (<Button className='btn-sm' style={{ display: 'block', margin: 'auto' }}>Edit</Button>),
-    //     headerStyle: (colum, colIndex) => {
-    //         return { width: '80px', textAlign: 'center' };
-    //     }},
-    //   { dataField: 'id', text: 'ID' },
-    //   { dataField: 'label', text: 'Label' },
-    //   { dataField: 'subTypeOf', text: 'Subtype Of' },
-    //   {
-    //     dataField: 'propertiesInfo',
-    //     text: 'Properties',
-    //     formatter: (cell) => (
-    //       <ul>
-    //         {cell && cell.map((val) => (
-    //           <li>{val}</li>
-    //         ))}
-    //       </ul>
-    //     )
-    //   },
-    //  ]
 
     return (
       <BootstrapTable

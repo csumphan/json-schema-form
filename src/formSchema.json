@@ -1,4 +1,51 @@
 {
+  "definitions": {
+    "property": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "title": "ID"
+        },
+        "label": {
+          "type": "string",
+          "title": "Label"
+        },
+        "description": {
+          "type": "string",
+          "title": "Description"
+        },
+        "observedBy": {
+          "type": "sensor",
+          "title": "Observed By"
+        },
+        "observation_type": {
+          "type": "observationType",
+          "title": "Observation Type"
+        }
+      },
+      "required": ["id", "label"]
+    },
+    "group": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "title": "ID"
+        },
+        "name": {
+          "type": "string",
+          "title": "Name"
+        },
+        "description": {
+          "type": "string",
+          "title": "Description"
+        }
+      },
+      "required": ["id", "name"]
+    },
+    "coordinate": {}
+  },
   "spaceType": {
     "label": "Space Types",
     "path": "/spacetype",
@@ -257,15 +304,20 @@
         },
         "email": {
           "type": "string",
-          "title": "Email"
+          "title": "Email",
+          "format": "email"
         },
         "description": {
           "type": "string",
           "title": "Description"
         },
         "owns": {
-          "type": "string",
+          "type": "sensorType",
           "title": "Owns"
+        },
+        "properties": {
+          "title": "Property",
+          "$ref": "#/definitions/property"
         }
       }
     },
@@ -284,7 +336,25 @@
       }
     }
   },
-  "observation_type": {
+  "testType": {
+    "label": "Test Type",
+    "path": "/testtype",
+    "form": {
+      "title": "Test type form",
+      "type": "object",
+      "properties": {
+        "owns": {
+          "type": "sensorType",
+          "title": "Owns"
+        },
+        "subTypeOf": {
+          "type": "spaceType",
+          "title": "Subtype of"
+        }
+      }
+    }
+  },
+  "observationType": {
     "label": "Observation Type",
     "path": "/observationtype",
     "form": {
