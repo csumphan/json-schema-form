@@ -3,7 +3,7 @@ import { render } from "react-dom"
 import * as deepmerge from 'deepmerge'
 import axios from 'axios'
 import Form from "react-jsonschema-form"
-// import { withRouter } from 'react-router-dom'
+import Typeahead from '../FormWidgets/Typeahead'
 
 import { getTypes, getDefinitionTypes, post } from '../../utils/api'
 
@@ -27,7 +27,12 @@ class JSONForm extends Component {
     //used to fill (custom TIPPERS types for form select field)
     Promise.all([getTypes(this.props.schema, this.props.formKey), getDefinitionTypes(this.props.definitions, this.props.schema, this.props.formKey)])
     .then(([newSchema, newDefinitions]) => {
-      this.setState({ schema: { definitions: newDefinitions, ...newSchema }})
+      this.setState({
+        schema: {
+          definitions: newDefinitions,
+          ...newSchema
+        }
+      })
     })
     .catch(err => {
       this.setState({ schema: { ...this.props.schema[this.props.formKey].form } })
@@ -35,6 +40,7 @@ class JSONForm extends Component {
   }
 
   onFormChange = (formData) => {
+    console.log('formdata', formData)
     this.setState({ formData: formData })
   }
 
@@ -54,6 +60,8 @@ class JSONForm extends Component {
     if (ui && this.props.uiSchema) {
      uiSchema = deepmerge(ui, this.props.uiSchema)
     }
+    console.log('ui', uiSchema)
+    console.log('schema', this.state.schema)
     console.log('form', this.state.formData)
     const { onChange, onSubmit, onError } = this.props
     return (
@@ -67,10 +75,14 @@ class JSONForm extends Component {
             className='form'
             schema={this.state.schema}
             uiSchema={uiSchema}
+            widgets={{
+              typeahead: Typeahead
+            }}
             onChange={({ formData }) => this.onFormChange(formData)}
             onSubmit={this.onSubmitForm}
             onError={onError}
             formData={this.state.formData}
+            // fields={fields}
           />
         }
       </div>

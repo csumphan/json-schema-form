@@ -90,7 +90,7 @@
         "ui:placeholder": "Conference_Room"
       },
       "subTypeOf": {
-        "ui:placeholder": "None"
+        "ui:placeholder": "BO_Conference_Room (optional)"
       },
       "description": {
         "ui:placeholder": "Fourth year CS undergrad"
@@ -350,6 +350,10 @@
         "subTypeOf": {
           "type": "spaceType",
           "title": "Subtype of"
+        },
+        "blah": {
+          "type": "observationType",
+          "title": "User"
         }
       }
     }
@@ -383,7 +387,7 @@
           "title": "Timestamp"
         },
         "subTypeOf": {
-          "type": "string",
+          "type": "observationType",
           "title": "Subtype Of"
         },
         "payload_schema": {
