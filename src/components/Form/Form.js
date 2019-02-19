@@ -35,6 +35,7 @@ class JSONForm extends Component {
       })
     })
     .catch(err => {
+      console.log('err', err)
       this.setState({ schema: { ...this.props.schema[this.props.formKey].form } })
     })
   }

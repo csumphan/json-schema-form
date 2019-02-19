@@ -1,17 +1,16 @@
 {
   "properties": {
+    "items": {
       "observation_type": {
-      "ui:widget": "typeahead",
-      "ui:placeholder": "Wow"
+        "ui:widget": "typeahead",
+        "ui:placeholder": "Wow"
+      }
     }
   },
   "observedBy": {
     "ui:widget": "typeahead"
   },
   "type": {
-    "ui:widget": "typeahead"
-  },
-  "subTypeOf": {
     "ui:widget": "typeahead"
   },
   "owns": {

@@ -49,6 +49,7 @@
   "spaceType": {
     "label": "Space Types",
     "path": "/spacetype",
+    "definitionsUsed": ["property"],
     "form": {
       "title": "Spacetype Form",
       "description": "Add or edit spacetype",
@@ -71,13 +72,11 @@
           "title": "Subtype of"
         },
         "properties": {
-          "type": "object",
           "title": "Properties",
-          "properties": {
-            "id": {
-              "type": "string",
-              "title": "Property Id"
-            }
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/property"
           }
         }
       }
@@ -90,16 +89,42 @@
         "ui:placeholder": "Conference_Room"
       },
       "subTypeOf": {
+        "ui:widget": "typeahead",
         "ui:placeholder": "BO_Conference_Room (optional)"
       },
       "description": {
         "ui:placeholder": "Fourth year CS undergrad"
+      },
+      "properties": {
+        "ui:options": {
+          "orderable": false
+        },
+        "items": {
+          "id": {
+            "ui:placeholder": "BO_Conference_Room_Occupancy"
+          },
+          "label": {
+            "ui:placeholder": "Occupancy"
+          },
+          "description": {
+            "ui:placeholder": "Description about Room Occupancy"
+          },
+          "observedBy": {
+            "ui:widget": "typeahead",
+            "ui:placeholder": "3022-clwa-209"
+          },
+          "observation_type": {
+            "ui:widget": "typeahead",
+            "ui:placeholder": "BO_Accelerometer_Reading"
+          }
+        }
       }
     }
   },
   "space": {
     "label": "Space",
     "path": "/space",
+    "definitionsUsed": ["property"],
     "form": {
       "title": "Spaces Form",
       "description": "Add or edit spaces",
@@ -126,17 +151,59 @@
           "type": "string",
           "title": "Description"
         },
-        "properties": {
-          "type": "array",
-          "title": "Properties",
-          "items": {
-            "type": "string",
-            "default": ""
-          }
-        },
         "geoobject": {
           "type": "string",
           "title": "Geoobject"
+        },
+        "properties": {
+          "title": "Properties",
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/property"
+          }
+        }
+      }
+    },
+    "ui": {
+      "id": {
+        "ui:placeholder": "BO_Conference_Room"
+      },
+      "label": {
+        "ui:placeholder": "Conference_Room"
+      },
+      "type": {
+        "ui:widget": "typeahead",
+        "ui:placeholder": "BO_Conference_Room (optional)"
+      },
+      "description": {
+        "ui:placeholder": "Fourth year CS undergrad"
+      },
+      "geoobject": {
+        "ui:placeholder": "Placeholder"
+      },
+      "properties": {
+        "ui:options": {
+          "orderable": false
+        },
+        "items": {
+          "id": {
+            "ui:placeholder": "BO_Conference_Room_Occupancy"
+          },
+          "label": {
+            "ui:placeholder": "Occupancy"
+          },
+          "description": {
+            "ui:placeholder": "Description about Room Occupancy"
+          },
+          "observedBy": {
+            "ui:widget": "typeahead",
+            "ui:placeholder": "3022-clwa-209"
+          },
+          "observation_type": {
+            "ui:widget": "typeahead",
+            "ui:placeholder": "BO_Accelerometer_Reading"
+          }
         }
       }
     }
@@ -144,6 +211,7 @@
   "platformType": {
     "label": "Platform Types",
     "path": "/platformtype",
+    "definitionsUsed": ["property"],
     "form": {
       "title": "Platform Type Form",
       "description": "Add or edit platform types",
@@ -163,11 +231,43 @@
           "title": "Name"
         },
         "properties": {
-          "type": "array",
           "title": "Properties",
+          "type": "array",
           "items": {
-            "type": "string",
-            "default": ""
+            "type": "object",
+            "$ref": "#/definitions/property"
+          }
+        }
+      }
+    },
+    "ui": {
+      "id": {
+        "ui:placeholder": "BO_Conference_Room"
+      },
+      "name": {
+        "ui:placeholder": "Conference_Room"
+      },
+      "properties": {
+        "ui:options": {
+          "orderable": false
+        },
+        "items": {
+          "id": {
+            "ui:placeholder": "BO_Conference_Room_Occupancy"
+          },
+          "label": {
+            "ui:placeholder": "Occupancy"
+          },
+          "description": {
+            "ui:placeholder": "Description about Room Occupancy"
+          },
+          "observedBy": {
+            "ui:widget": "typeahead",
+            "ui:placeholder": "3022-clwa-209"
+          },
+          "observation_type": {
+            "ui:widget": "typeahead",
+            "ui:placeholder": "BO_Accelerometer_Reading"
           }
         }
       }
@@ -195,11 +295,43 @@
           "title": "Name"
         },
         "properties": {
-          "type": "array",
           "title": "Properties",
+          "type": "array",
           "items": {
-            "type": "string",
-            "default": ""
+            "type": "object",
+            "$ref": "#/definitions/property"
+          }
+        }
+      }
+    },
+    "ui": {
+      "id": {
+        "ui:placeholder": "BO_Conference_Room"
+      },
+      "name": {
+        "ui:placeholder": "Conference_Room"
+      },
+      "properties": {
+        "ui:options": {
+          "orderable": false
+        },
+        "items": {
+          "id": {
+            "ui:placeholder": "BO_Conference_Room_Occupancy"
+          },
+          "label": {
+            "ui:placeholder": "Occupancy"
+          },
+          "description": {
+            "ui:placeholder": "Description about Room Occupancy"
+          },
+          "observedBy": {
+            "ui:widget": "typeahead",
+            "ui:placeholder": "3022-clwa-209"
+          },
+          "observation_type": {
+            "ui:widget": "typeahead",
+            "ui:placeholder": "BO_Accelerometer_Reading"
           }
         }
       }
@@ -247,6 +379,42 @@
           }
         }
       }
+    },  
+    "ui": {
+      "id": {
+        "ui:placeholder": "BO_Conference_Room"
+      },
+      "label": {
+        "ui:placeholder": "Conference_Room"
+      },
+      "subTypeOf": {
+        "ui:widget": "typeahead",
+        "ui:placeholder": "BO_Conference_Room (optional)"
+      },
+      "properties": {
+        "ui:options": {
+          "orderable": false
+        },
+        "items": {
+          "id": {
+            "ui:placeholder": "BO_Conference_Room_Occupancy"
+          },
+          "label": {
+            "ui:placeholder": "Occupancy"
+          },
+          "description": {
+            "ui:placeholder": "Description about Room Occupancy"
+          },
+          "observedBy": {
+            "ui:widget": "typeahead",
+            "ui:placeholder": "3022-clwa-209"
+          },
+          "observation_type": {
+            "ui:widget": "typeahead",
+            "ui:placeholder": "BO_Accelerometer_Reading"
+          }
+        }
+      }
     }
   },
   "sensor": {
@@ -284,6 +452,7 @@
   "user": {
     "label": "User",
     "path": "/user",
+    "definitionsUsed": ["property"],
     "form": {
       "title": "User Form",
       "description": "Add or edit user",
@@ -316,8 +485,12 @@
           "title": "Owns"
         },
         "properties": {
-          "title": "Property",
-          "$ref": "#/definitions/property"
+          "title": "Properties",
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/property"
+          }
         }
       }
     },

@@ -24,9 +24,6 @@ class AdminSidebar extends Component {
       sidebarDocked: mql.matches,
       sidebarOpen: false
     };
-
-    this.mediaQueryChanged = this.mediaQueryChanged.bind(this);
-    this.onSetSidebarOpen = this.onSetSidebarOpen.bind(this);
   }
 
   componentWillMount() {
@@ -37,15 +34,24 @@ class AdminSidebar extends Component {
     mql.removeListener(this.mediaQueryChanged);
   }
 
-  onSetSidebarOpen(open) {
+  onSetSidebarOpen = (open) => {
     this.setState({ sidebarOpen: open });
   }
 
-  mediaQueryChanged() {
+  mediaQueryChanged = () => {
     this.setState({ sidebarDocked: mql.matches, sidebarOpen: false });
   }
+
+  toggleOpen = (ev) => {
+    this.setState({ sidebarOpen: !this.state.sidebarOpen })
+
+    if (ev) {
+      ev.preventDefault()
+    }
+  }
+
   render() {
-    console.log('sss', this.props.schema)
+
     return (
       <Sidebar
         sidebarClassName='sidebar'
@@ -55,7 +61,20 @@ class AdminSidebar extends Component {
         docked={this.state.sidebarDocked}
         onSetOpen={this.onSetSidebarOpen}
       >
+      <div className='main-content'>
+        {!this.state.sidebarDocked && (
+        <div className='content-header-container'>
+          <a
+            onClick={this.toggleOpen}
+            href="#"
+            className='content-header-button'
+          >
+            =
+          </a>
+        </div>
+      )}
         {this.props.children}
+      </div>
       </Sidebar>
   )
   }
