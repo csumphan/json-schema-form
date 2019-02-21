@@ -36,7 +36,10 @@ class JSONForm extends Component {
     })
     .catch(err => {
       console.log('err', err)
-      this.setState({ schema: { ...this.props.schema[this.props.formKey].form } })
+      this.setState({ schema: {
+        definitions: this.props.definitions,
+         ...this.props.schema[this.props.formKey].form
+       } })
     })
   }
 
@@ -46,9 +49,11 @@ class JSONForm extends Component {
   }
 
   onSubmitForm = () => {
-    const body = {
-      users: [this.state.formData]
-    }
+    // const body = {
+    //   users: [this.state.formData]
+    // }
+    const body = [this.state.formData]
+    console.log('body',body)
 
     post(this.props.schema[this.props.formKey].path, [this.state.formData])
     .then(() => {

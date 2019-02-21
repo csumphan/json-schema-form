@@ -55,7 +55,7 @@ class AdminSidebar extends Component {
     return (
       <Sidebar
         sidebarClassName='sidebar'
-        contentClassName='main'
+        contentClassName=''
         sidebar={<SidebarContent pages={this.props.schema}/>}
         open={this.state.sidebarOpen}
         docked={this.state.sidebarDocked}

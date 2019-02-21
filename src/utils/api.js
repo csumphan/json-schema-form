@@ -40,10 +40,15 @@ export const getTypes = async (schema, formKey) => {
         responseType: 'application/json'
       })
 
-      newSchema.properties[key] = {
-        ...newSchema.properties[key],
-        type: 'string',
-        enum: result.data.map(val => val.id)
+      if (result.data && result.data.length > 0) {
+        newSchema.properties[key] = {
+          ...newSchema.properties[key],
+          type: 'string',
+          enum: result.data.map(val => val.id)
+        }
+      }
+      else {
+        delete newSchema.properties[key]
       }
     }
   }
@@ -54,33 +59,35 @@ export const getTypes = async (schema, formKey) => {
 export const getDefinitionTypes = async (definitions, schema, formKey) => {
   const supportedTypes = Object.keys(schema)
 
-  let newDefinitions = { ...definitions }
+  let newDefinitions = {}
   const usedDefs = schema[formKey].definitionsUsed ? schema[formKey].definitionsUsed : []
 
   for (let i = 0; i < usedDefs.length; i++) {
     const defKey = usedDefs[i]
+    newDefinitions[defKey] = {}
 
-    for (let i in newDefinitions[defKey].properties) {
-      if (supportedTypes.includes(newDefinitions[defKey].properties[i].type)) {
+    for (let i in definitions[defKey].properties) {
+
+      if (supportedTypes.includes(definitions[defKey].properties[i].type)) {
 
         const result = await axios({
           method: 'get',
-          url: `${HOST}${schema[newDefinitions[defKey].properties[i].type].path}`,
+          url: `${HOST}${schema[definitions[defKey].properties[i].type].path}`,
           responseType: 'application/json'
         })
-
-        if (result.data.length > 0) {
-          newDefinitions[defKey].properties[i] = {
-            ...newDefinitions[defKey].properties[i],
+        console.log('defres', result, `${HOST}${schema[definitions[defKey].properties[i].type].path}`)
+        if (result.data && result.data.length > 0) {
+          definitions[defKey].properties[i] = {
+            ...definitions[defKey].properties[i],
             type: 'string',
             enum: result.data.map(val => val.id)
           }
         }
         else {
-          delete newDefinitions[defKey].properties[i]
+          delete definitions[defKey].properties[i]
         }
-
       }
+      newDefinitions[defKey] = { ...definitions[defKey] }
     }
   }
 

@@ -1,22 +1,4 @@
 {
-  "properties": {
-    "items": {
-      "observation_type": {
-        "ui:widget": "typeahead",
-        "ui:placeholder": "Wow"
-      }
-    }
-  },
-  "observedBy": {
-    "ui:widget": "typeahead"
-  },
-  "type": {
-    "ui:widget": "typeahead"
-  },
-  "owns": {
-    "ui:widget": "typeahead",
-    "ui:placeholder": "Wow"
-  },
   "firstName": {
     "ui:autofocus": true,
     "ui:emptyValue": ""
