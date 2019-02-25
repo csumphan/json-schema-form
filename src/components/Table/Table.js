@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import BootstrapTable from 'react-bootstrap-table-next'
+import filterFactory, { textFilter } from 'react-bootstrap-table2-filter'
 import { Link } from "react-router-dom"
 import Button from '../Button'
 import EmptyState from '../EmptyState'
@@ -56,10 +57,6 @@ class Table extends Component {
     })
   }
 
-  editRowHandler() {
-
-  }
-
   render() {
     const schemaProperties = this.props.schema.form.properties
 
@@ -68,7 +65,8 @@ class Table extends Component {
       return {
         dataField: key.toLowerCase(),
         text: schemaProperties[key]['title'],
-        sort: true
+        sort: true,
+        filter: textFilter()
       }
     })
 
@@ -106,6 +104,7 @@ class Table extends Component {
         rowClasses='table-cell'
         headerClasses='bootstrap-table-header'
         data={this.state.rows}
+        filter={filterFactory()}
         noDataIndication={<EmptyState title='Table is Empty' description={`Create a ${this.props.schema.label} and it will show up here.`}/>}
     />
     )

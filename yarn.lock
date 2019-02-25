@@ -8121,6 +8121,11 @@ react-bootstrap-table-next@^2.1.0:
     classnames "2.2.5"
     underscore "1.9.1"
 
+react-bootstrap-table2-filter@^1.1.5:
+  version "1.1.5"
+  resolved "https://registry.yarnpkg.com/react-bootstrap-table2-filter/-/react-bootstrap-table2-filter-1.1.5.tgz#3d824204642efd4c92058b2e09d07d7ab716db08"
+  integrity sha512-C322+S0pw+DqTO4ann0w8OlykZRgD31KDP8WokBTkf9ug+GFq/f9Qenkc7MMlDBZT5gWAICh5aX53jcZFCtTbA==
+
 react-bootstrap-typeahead@^3.3.4:
   version "3.3.4"
   resolved "https://registry.yarnpkg.com/react-bootstrap-typeahead/-/react-bootstrap-typeahead-3.3.4.tgz#e0c26332f83cb6964fc3d003f8ffeb4b86fffab5"
