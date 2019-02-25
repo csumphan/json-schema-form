@@ -46,6 +46,7 @@
     },
     "coordinate": {
       "type": "object",
+      "required": ["id", "label"],
       "properties": {
         "id": {
           "type": "string",
@@ -222,9 +223,6 @@
       "description": {
         "ui:placeholder": "Fourth year CS undergrad"
       },
-      "geoobject": {
-        "ui:placeholder": "Placeholder"
-      },
       "properties": {
         "ui:options": {
           "orderable": false
@@ -246,6 +244,33 @@
           "observation_type": {
             "ui:widget": "typeahead",
             "ui:placeholder": "BO_Accelerometer_Reading"
+          }
+        }
+      },
+      "geoobject": {
+        "ui:options": {
+          "orderable": false
+        },
+        "id": {
+          "ui:placeholder": "DBH_GEOOBJECT"
+        },
+        "coordinate": {
+          "items": {
+            "id": {
+              "ui:placeholder": "ICS_AP243_Location"
+            },
+            "x": {
+              "ui:placeholder": "5"
+            },
+            "y": {
+              "ui:placeholder": "10"
+            },
+            "z": {
+              "ui:placeholder": "2"
+            },
+            "label": {
+              "ui:placeholder": "ICS 243"
+            }
           }
         }
       }
@@ -423,7 +448,7 @@
           "type": "array",
           "title": "Observes",
           "items": {
-            "type": "string",
+            "type": "observationType",
             "default": ""
           }
         }
@@ -431,14 +456,20 @@
     },
     "ui": {
       "id": {
-        "ui:placeholder": "BO_Conference_Room"
+        "ui:placeholder": "BO_WiFiAP"
       },
       "label": {
-        "ui:placeholder": "Conference_Room"
+        "ui:placeholder": "WiFiAP"
+      },
+      "description": {
+        "ui:placeholder": "AP provides wireless connections using wireless LAN technology"
+      },
+      "coverage_function": {
+        "ui:placeholder": "test.ics.uci.edu:3001/WiFiTestCoverage.java"
       },
       "subTypeOf": {
         "ui:widget": "typeahead",
-        "ui:placeholder": "BO_Conference_Room (optional)"
+        "ui:placeholder": "TIP_Physical_Sensor (optional)"
       },
       "properties": {
         "ui:options": {

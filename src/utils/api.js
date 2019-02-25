@@ -1,6 +1,34 @@
 import axios from 'axios'
+// import deepMap from 'deep-map'
+import _ from 'lodash'
 
 const HOST = 'http://128.195.53.163:1086'
+
+
+
+// used to search through an object recursively replacing specific keys
+// with a transformed value. (needed for deeply nested object)
+const deepMap = async (obj, iterator, context) => {
+    const newMap = await _.transform(obj, async (result, val, key) => {
+      if (_.isObject(val)) {
+        result[key] = await deepMap(val, iterator, context)
+      }
+      else {
+        const change = await iterator.call(context, val, key, obj)
+        console.log('change', change)
+        if (change) {
+          console.log('change2', change)
+          result[key] = change[0]
+          result['enum'] = change[1].enum
+        }
+        else {
+          result[key] = val
+        }
+      }
+    }, {})
+
+    return newMap
+}
 
 export const get = async (path) => {
 
@@ -52,6 +80,7 @@ export const getTypes = async (schema, formKey) => {
       }
     }
   }
+  // console.log('endd', newSchemaProp)
   return newSchema
 }
 

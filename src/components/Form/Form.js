@@ -23,10 +23,11 @@ class JSONForm extends Component {
       formData: this.props.formData
     }
   }
-  componentDidMount() {
+  async componentDidMount() {
     //used to fill (custom TIPPERS types for form select field)
     Promise.all([getTypes(this.props.schema, this.props.formKey), getDefinitionTypes(this.props.definitions, this.props.schema, this.props.formKey)])
     .then(([newSchema, newDefinitions]) => {
+      console.log('NEWSCHEMA', newSchema)
       this.setState({
         schema: {
           definitions: newDefinitions,

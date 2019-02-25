@@ -4,8 +4,11 @@
   "private": true,
   "dependencies": {
     "axios": "^0.18.0",
+    "deep-map": "^2.0.0",
     "deepmerge": "^3.1.0",
+    "es6-weak-map": "^2.0.2",
     "glyphicons-only-bootstrap": "^1.0.1",
+    "lodash": "^4.17.11",
     "react": "^16.7.0",
     "react-bootstrap-table-next": "^2.1.0",
     "react-bootstrap-typeahead": "^3.3.4",
