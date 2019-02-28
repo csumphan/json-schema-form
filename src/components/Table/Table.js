@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import BootstrapTable from 'react-bootstrap-table-next'
 import filterFactory, { textFilter } from 'react-bootstrap-table2-filter'
 import { Link } from "react-router-dom"
+import _ from "lodash"
 import Button from '../Button'
 import EmptyState from '../EmptyState'
 import { get } from "utils/api"
@@ -53,7 +54,18 @@ class Table extends Component {
     get(this.props.schema.path)
     .then(res => {
       console.log('res', res.data)
-      this.setState({ rows: res.data })
+      const tableData = res.data.map((rowData) => {
+        return Object.keys(rowData).reduce((acc, key) => {
+          if (_.isObject(rowData[key])) {
+            acc[key] = rowData[key].id
+          }
+          else {
+            acc[key] = rowData[key]
+          }
+          return acc
+        }, {})
+      })
+      this.setState({ rows: tableData })
     })
   }
 
@@ -63,7 +75,7 @@ class Table extends Component {
     let columns = Object.keys(schemaProperties).map((key) => {
       console.log('stuff',schemaProperties[key])
       return {
-        dataField: key.toLowerCase(),
+        dataField: _.camelCase(key),
         text: schemaProperties[key]['title'],
         sort: true,
         filter: textFilter()
@@ -74,7 +86,6 @@ class Table extends Component {
       {
          dataField: 'button',
          formatter: (_, row, rowIndex) => {
-           console.log('row', row)
           return (
             <Link to={{
               pathname: `${this.props.match.path}/edit/${rowIndex}`,

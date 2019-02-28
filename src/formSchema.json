@@ -69,6 +69,23 @@
           "title": "Z"
         }
       }
+    },
+    "coverage": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "title": "Coverage ID"
+        },
+        "space": {
+          "type": "array",
+          "title": "Spaces",
+          "items": {
+            "type": "string",
+            "default": ""
+          }
+        }
+      }
     }
   },
   "spaceType": {
@@ -294,9 +311,13 @@
           "type": "string",
           "title": "ID "
         },
-        "name": {
+        "label": {
           "type": "string",
-          "title": "Name"
+          "title": "Label"
+        },
+        "description": {
+          "type": "string",
+          "title": "Description"
         },
         "properties": {
           "title": "Properties",
@@ -444,11 +465,15 @@
           "type": "string",
           "title": "Coverage Function"
         },
+        "wrapper": {
+          "type": "string",
+          "title": "Wrapper"
+        },
         "observes": {
           "type": "array",
           "title": "Observes",
           "items": {
-            "type": "observationType",
+            "type": "string",
             "default": ""
           }
         }
@@ -500,13 +525,13 @@
   "sensor": {
     "label": "Sensor",
     "path": "/sensor",
+    "definitionsUsed": ["coordinate", "coverage"],
     "form": {
       "title": "Sensor Form",
       "description": "Add or edit sensor",
       "type": "object",
       "required": [
         "id",
-        "name",
         "description"
       ],
       "properties": {
@@ -514,9 +539,13 @@
           "type": "string",
           "title": "ID "
         },
-        "name": {
+        "label": {
           "type": "string",
-          "title": "Name"
+          "title": "Label"
+        },
+        "type": {
+          "type": "sensorType",
+          "title": "Type"
         },
         "description": {
           "type": "string",
@@ -525,7 +554,65 @@
         "mobility": {
           "type": "string",
           "title": "Mobility"
+        },
+        "coverage": {
+          "type": "object",
+          "title": "Coverage",
+          "$ref": "#/definitions/coverage"
+        },
+        "location": {
+          "type": "object",
+          "title": "Location",
+          "$ref": "#/definitions/coordinate"
         }
+      }
+    },
+    "ui": {
+      "id": {
+        "ui:placeholder": "3022-clwa-243"
+      },
+      "label": {
+        "ui:placeholder": "WiFiAP in ICS 243"
+      },
+      "description": {
+        "ui:placeholder": "WiFi Access Point in ICS building room 243"
+      },
+      "coverage": {
+        "id": {
+          "ui:placeholder": "ICS_AP243_Coverage"
+        },
+        "space": {
+          "ui:options": {
+            "orderable": false
+          },
+          "items": {
+            "ui:placeholder": "ICS_243"
+          }
+        }
+      },
+      "location": {
+        "id": {
+          "ui:placeholder": "ICS_AP243_Location"
+        },
+        "label": {
+          "ui:placeholder": "ICS 243 Location"
+        },
+        "x": {
+          "ui:placeholder": "7"
+        },
+        "y": {
+          "ui:placeholder": "82"
+        },
+        "z": {
+          "ui:placeholder": "3"
+        }
+      },
+      "type": {
+        "ui:widget": "typeahead",
+        "ui:placeholder": "BO_WiFiAP"
+      },
+      "mobility": {
+        "ui:placeholder": "fixed"
       }
     }
   },
@@ -693,28 +780,6 @@
       }
     }
   },
-  "testType": {
-    "label": "Test Type",
-    "path": "/testtype",
-    "form": {
-      "title": "Test type form",
-      "type": "object",
-      "properties": {
-        "owns": {
-          "type": "sensorType",
-          "title": "Owns"
-        },
-        "subTypeOf": {
-          "type": "spaceType",
-          "title": "Subtype of"
-        },
-        "blah": {
-          "type": "observationType",
-          "title": "User"
-        }
-      }
-    }
-  },
   "observationType": {
     "label": "Observation Type",
     "path": "/observationtype",
@@ -738,6 +803,56 @@
         "description": {
           "type": "string",
           "title": "Description"
+        },
+        "timestamp": {
+          "type": "string",
+          "title": "Timestamp"
+        },
+        "subTypeOf": {
+          "type": "observationType",
+          "title": "Subtype Of"
+        }
+      }
+    },
+    "ui": {
+      "id": {
+        "ui:placeholder": "BO_Conference_Room"
+      },
+      "label": {
+        "ui:placeholder": "Conference_Room"
+      },
+      "subTypeOf": {
+        "ui:widget": "typeahead",
+        "ui:placeholder": "BO_Conference_Room (optional)"
+      },
+      "description": {
+        "ui:placeholder": "Fourth year CS undergrad"
+      }
+    }
+  },
+  "observation": {
+    "label": "Observation",
+    "path": "/observation",
+    "form": {
+      "title": "Observation Form",
+      "description": "Add or edit Observation",
+      "type": "object",
+      "required": [
+        "type",
+        "label"
+      ],
+      "properties": {
+        "type": {
+          "type": "observationType",
+          "title": "Type"
+        },
+        "label": {
+          "type": "string",
+          "title": "Label"
+        },
+        "sensor": {
+          "type": "sensor",
+          "title": "Sensor"
         },
         "timestamp": {
           "type": "string",

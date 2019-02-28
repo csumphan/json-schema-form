@@ -17,7 +17,7 @@ import './Form.css'
 class JSONForm extends Component {
   constructor(props) {
     super(props)
-
+    this.myRef = React.createRef()
     this.state = {
       schema: null,
       formData: this.props.formData
@@ -50,13 +50,13 @@ class JSONForm extends Component {
   }
 
   onSubmitForm = () => {
-    // const body = {
-    //   users: [this.state.formData]
-    // }
     const body = [this.state.formData]
+    // const body = {
+    //   sensor: [this.state.formData]
+    // }
     console.log('body',body)
 
-    post(this.props.schema[this.props.formKey].path, [this.state.formData])
+    post(this.props.schema[this.props.formKey].path, body)
     .then(() => {
       this.props.history.push(`/${this.props.formKey}`)
     })
@@ -79,6 +79,7 @@ class JSONForm extends Component {
           null
           :
           <Form
+            ref={this.myRef}
             className='form'
             schema={this.state.schema}
             uiSchema={uiSchema}
@@ -87,7 +88,10 @@ class JSONForm extends Component {
             }}
             onChange={({ formData }) => this.onFormChange(formData)}
             onSubmit={this.onSubmitForm}
-            onError={onError}
+            onError={(err) => {
+              console.log('err', err)
+              // ReactDOM.findDOMNode(this).scrollTop = 0
+            }}
             formData={this.state.formData}
             // fields={fields}
           />
