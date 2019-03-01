@@ -7,13 +7,13 @@ This is a user interface allowing users to interact/set up their TIPPERS instanc
 **Step 1:** git clone this repo:
 
 ```bash
-git clone https://github.com/csumphan/react-loader-test.git
+git clone git@github.com:csumphan/tippers-api-frontend.git
 ```
 
 **Step 2:** cd to the cloned repo:
 
 ```bash
-cd react-loader-test
+cd tippers-api-frontend
 ```
 
 **Step 3:** Install the Application with `yarn`
@@ -33,7 +33,8 @@ You can find the build in build/ in the project's root directory
 ## Usage
 The UI is completely rendered based of the information in `formSchema.json`. Each outer key of the schema represents a path to view/edit/create that specified object type.
 
-The following is an example of a single 
+The following is an example of a single entry in the schema. 
+
 ```json
 {
 "spaceType": {
@@ -111,3 +112,6 @@ The following is an example of a single
   }
 }
 ```
+This will generate a new route with the path of `/spacetype` in the web application. This will also generate a table view of the `spacetype` from tippers and the form pages used to add/edit `spacetype` to tippers. The following images are what is created from the entry above.
+
+<img width="420" alt="screenshot 2019-02-28 16 36 21" src="https://user-images.githubusercontent.com/19628690/53608316-102c5a80-3b77-11e9-87be-977e8f28318a.png"> <img width="420" alt="screenshot 2019-02-28 16 36 30" src="https://user-images.githubusercontent.com/19628690/53608312-0d316a00-3b77-11e9-8c29-da691e0a7d74.png">
