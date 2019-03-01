@@ -119,7 +119,7 @@ The following images are what is created from the entry above.
 <img width="420" alt="screenshot 2019-02-28 16 36 21" src="https://user-images.githubusercontent.com/19628690/53608316-102c5a80-3b77-11e9-87be-977e8f28318a.png"> <img width="420" alt="screenshot 2019-02-28 16 36 30" src="https://user-images.githubusercontent.com/19628690/53608312-0d316a00-3b77-11e9-8c29-da691e0a7d74.png">
 
 
-## API Doc
+## Form Schema Properties Doc
 The following are description of key and values that can be used in the `formSchema.json`
 
 ### Route Object Properties (Outermost keys)
