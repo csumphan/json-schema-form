@@ -112,6 +112,22 @@ The following is an example of a single entry in the schema.
   }
 }
 ```
-This will generate a new route with the path of `/spacetype` in the web application. This will also generate a table view of the `spacetype` from tippers and the form pages used to add/edit `spacetype` to tippers. The following images are what is created from the entry above.
+This will generate a new route with the path of `/spacetype` in the web application. This will also generate a table view of the `spacetype` from retrieving data from the path specified with the `path` key. Form pages are created which is used to add/edit `spacetype` to tippers. 
+
+The following images are what is created from the entry above.
 
 <img width="420" alt="screenshot 2019-02-28 16 36 21" src="https://user-images.githubusercontent.com/19628690/53608316-102c5a80-3b77-11e9-87be-977e8f28318a.png"> <img width="420" alt="screenshot 2019-02-28 16 36 30" src="https://user-images.githubusercontent.com/19628690/53608312-0d316a00-3b77-11e9-8c29-da691e0a7d74.png">
+
+
+## API Doc
+The following are description of key and values that can be used in the `formSchema.json`
+
+### Route Component Props (Outermost keys)
+Key                 | Value Type  | Required    | Description    | 
+-------------------- | --------- |--------------- |-------------- | 
+`label`            | `string` | Yes |The displayed title for the table view                      
+`path`            | `array of string` |  Yes | The path to a specific endpoint to TIPPERS
+`definitionsUsed`    | `number`  | Yes, if used $ref in `form` object|  The key of definitions used within the form object                      
+`form`          | `object`  | Yes   | The object describing what will be on the add/edit form
+`ui`          | `object`  | Yes   | The object describing how the form will look ( used mainly for placeholders)
+
