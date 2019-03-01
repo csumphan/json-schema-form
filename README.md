@@ -141,7 +141,12 @@ Also see the library's playground to test out what form field customization you 
 Key                 | Value Type  | Required    | Description    | 
 -------------------- | --------- |--------------- |-------------- | 
 `title`            | `string` | Yes |The displayed title for the form view                      
-`description`            | `string` |  Yes | Adds description about the form
-`type`    | `object`  | Yes|  Describes the form data on submit                        
+`description`            | `string` |  Yes | The description text displayed underneath `title`
+`type`    | `string`  | Yes|  Describes the form data on submit (will almost always be "object")                      
 `required`          | `array of properties`  | Yes   | Describes which properties is required for submission
 `properties`          | `object`  | Yes   | The object describes what fields will be on the form, allowing for customization for each field
+
+
+### UI Object Properties
+
+The `ui` key describes how to style each field in the form. Using the key in `form.properties` to match the field, you can add placeholders and change styling of the field.
