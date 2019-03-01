@@ -122,7 +122,7 @@ The following images are what is created from the entry above.
 ## API Doc
 The following are description of key and values that can be used in the `formSchema.json`
 
-### Route Component Props (Outermost keys)
+### Route Object Properties (Outermost keys)
 Key                 | Value Type  | Required    | Description    | 
 -------------------- | --------- |--------------- |-------------- | 
 `label`            | `string` | Yes |The displayed title for the table view                      
@@ -131,3 +131,17 @@ Key                 | Value Type  | Required    | Description    |
 `form`          | `object`  | Yes   | The object describing what will be on the add/edit form
 `ui`          | `object`  | Yes   | The object describing how the form will look ( used mainly for placeholders)
 
+
+### Form Object Properties 
+
+The `form` key describes how the form for each route will be like. The following properties are used to create the form. More reference to what can be added to the `form` object can be found in the form library documentation: https://react-jsonschema-form.readthedocs.io/en/latest/
+
+Also see the library's playground to test out what form field customization you need: https://mozilla-services.github.io/react-jsonschema-form/
+
+Key                 | Value Type  | Required    | Description    | 
+-------------------- | --------- |--------------- |-------------- | 
+`title`            | `string` | Yes |The displayed title for the form view                      
+`description`            | `string` |  Yes | Adds description about the form
+`type`    | `object`  | Yes|  Describes the form data on submit                        
+`required`          | `array of properties`  | Yes   | Describes which properties is required for submission
+`properties`          | `object`  | Yes   | The object describes what fields will be on the form, allowing for customization for each field
