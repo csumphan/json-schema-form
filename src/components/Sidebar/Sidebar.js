@@ -17,6 +17,8 @@ const SidebarContent = ({ pages }) => (
   </div>
 )
 
+// refer to the react-sidebar docs if any change is needed
+// https://github.com/balloob/react-sidebar
 class AdminSidebar extends Component {
   constructor(props) {
     super(props);

@@ -10,37 +10,10 @@ import { get } from "utils/api"
 import 'react-bootstrap-table-next/dist/react-bootstrap-table2.min.css';
 import './Table.css'
 
-const API_DATA = [
-    {
-        "id": "BO_Floor",
-        "description": "A floor is the bottom surface of a room or vehicle",
-        "label": "Floor",
-        "properties": []
-    },
-    {
-        "id": "BO_Conference_Room",
-        "description": "A room provided for singular events such as business conferences and meetings",
-        "label": "Conference Room",
-        "properties": [
-            "Property [property_id=BO_Conference_Room_Occupancy, name=Occupancy]"
-        ]
-    },
-    {
-        "id": "BO_Building",
-        "description": "a structure with a roof and walls standing more or less permanently in one place, such as a house or factory",
-        "label": "Building",
-        "properties": []
-    },
-    {
-        "id": "BO_Room",
-        "description": "Any distinguishable space within a structure",
-        "label": "Room",
-        "properties": [
-            "Property [property_id=BO_Room_Occupancy, name=Occupancy]"
-        ]
-    }
-]
 
+// This is the actual table component, which utilizes the BootstrapTable
+// component.
+// can refer to docs here: https://react-bootstrap-table.github.io/react-bootstrap-table2/docs/getting-started.html
 class Table extends Component {
   constructor(props) {
     super(props)
@@ -51,17 +24,26 @@ class Table extends Component {
   }
 
   componentDidMount() {
+    // when the component mounts, we make a GET call using the path set in the
+    // formSchema.json. Then we set transform the return value
     get(this.props.schema.path)
     .then(res => {
-      console.log('res', res.data)
+      // this is where we transform the return value.
+      // we loop through each value (object) and loop through each key-value pair in the object
+      // if the value is an array or object we stringify it since the table component can only take
+      // strings/numbers as a value
+      // TO BE CHANGE: the array/object are not being formatted nicely since its only getting stringified,
+      // needs update on styling
       const tableData = res.data.map((rowData) => {
+        console.log('rowData', rowData)
         return Object.keys(rowData).reduce((acc, key) => {
-          if (_.isObject(rowData[key])) {
-            acc[key] = rowData[key].id
+          if (_.isObject(rowData[key]) || _.isArray(rowData[key])) {
+            acc[key] = JSON.stringify(rowData[key], null, 2)
           }
           else {
             acc[key] = rowData[key]
           }
+          console.log('acc', acc)
           return acc
         }, {})
       })
@@ -72,6 +54,7 @@ class Table extends Component {
   render() {
     const schemaProperties = this.props.schema.form.properties
 
+    // we create the columns of the table off the fields in the form object of the schema
     let columns = Object.keys(schemaProperties).map((key) => {
       console.log('stuff',schemaProperties[key])
       return {
@@ -82,6 +65,7 @@ class Table extends Component {
       }
     })
 
+    // this adds the columns of edit buttons to the first column of the table
     columns = [
       {
          dataField: 'button',

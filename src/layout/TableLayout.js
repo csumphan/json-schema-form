@@ -1,6 +1,9 @@
 import React, { Component } from 'react'
 
 import './TableLayout.css'
+
+// exports different parts of the Table Layout to be used
+// helps keep styling of the table view consistent
 export const TableLayout = ({ children }) => {
   console.log('children', children)
   return (

@@ -12,14 +12,19 @@ import './App.css';
 
 const log = (type) => console.log.bind(console, type);
 const routes = []
+
+// This maps the keys in the schema (which are for example spacetype, sensor, user, etc)
+// and create routes that the user can access the table view and the form view
 Object.keys(schema).forEach((key) => {
   routes.push(
     {
+      // this is the table view route which can be access by "/{name of key}"
       path: `/${key.toLowerCase()}`,
       main: (props) => <TableView schema={schema[key]} {...props}/>,
       exact: true
     },
     {
+      //this is the form view for a new form, access by "/{name of key}/new"
       path: `/${key.toLowerCase()}/new`,
       main: (props) => <div className=' col-sm-7 form-container'>
       <Form
@@ -35,6 +40,7 @@ Object.keys(schema).forEach((key) => {
       exact: true
     },
     {
+      //this is the form view for an edit form, access by "/{name of key}/edit"
       path: `/${key.toLowerCase()}/edit/:id`,
       main: (props) => <div className=' col-sm-7 form-container'>
       <Form
@@ -60,6 +66,11 @@ class App extends Component {
         <Router>
           <div className='app-wrapper'>
             <Sidebar schema={schema}>
+                 {
+                   /* here we use the "routes" array and create Route components for each item in the array.
+                   The following lines actually creates the routes, while the items in the "routes" array
+                   describes the routes */ 
+                }
                 {routes.map((route, index) => (
                   <Route
                     key={index}
